@@ -9,11 +9,16 @@ const tableName = process.env.SAMPLE_TABLE;
 
 const { v4: uuidv4 } = require('uuid');
 
+
+
+const multer = require('multer');
+const upload = multer();
+
 /**
  * A simple example includes a HTTP post method to add one item to a DynamoDB table.
  */
 exports.putItemHandler = async (event) => {
-    console.log('xxxxx')
+    console.log('***********', event)
     if (event.httpMethod !== 'POST') {
         throw new Error(`postMethod only accepts POST method, you tried: ${event.httpMethod} method.`);
     }
@@ -23,10 +28,15 @@ exports.putItemHandler = async (event) => {
     // Get id and name from the body of the request
     const body = JSON.parse(event.body);
     const id = uuidv4();
-    const name = body.name;
-    console.log('--------',body)
+
     const image = body.image
-    console.log('--------',tableName)
+
+    const author= body.author
+    const title = body.title
+    const description = body.description
+    const tags = body.tags
+
+
 
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -43,7 +53,13 @@ exports.putItemHandler = async (event) => {
     try {
         const params = {
             TableName : tableName,
-            Item: { id : id, name: name,image:image }
+            Item: { 
+                id : id,
+                title:title,
+                description:description,
+                author:author,
+                tags:tags
+            }
         };
     
      const result = await docClient.put(params).promise();

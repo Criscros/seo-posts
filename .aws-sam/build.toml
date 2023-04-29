@@ -5,7 +5,7 @@ codeuri = "/Users/david/Desktop/ladiesroom/seo-posts"
 runtime = "nodejs16.x"
 architecture = "x86_64"
 handler = "src/handlers/get-all-items.getAllItemsHandler"
-manifest_hash = "8f16ea221e689d86ac619d2f4a184b99"
+manifest_hash = "2ea2d7fe00ef59abfc0886789b9034c2"
 packagetype = "Zip"
 functions = ["getAllItemsFunction", "getByIdFunction", "putItemFunction"]
 
